@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>NutriSanta | Plataforma Nutricional</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles-github-final.css" />
+  <script src="app-github-final.js" defer></script>
+</head>
+
+<body>
+  <!-- ÍCONES SVG INTERNOS -->
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-leaf" viewBox="0 0 24 24">
+      <path d="M20.6 3.4C14.7 3.6 9.8 5.4 6.9 8.3c-2.4 2.4-3 5.6-1.8 8.2L3 18.6 4.4 20l2.1-2.1c2.6 1.2 5.8.6 8.2-1.8 2.9-2.9 4.7-7.8 4.9-13.7Z"/>
+      <path d="M7 17c3-4 6.3-7 10.3-9.2"/>
+    </symbol>
+
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <path d="M20 21a8 8 0 0 0-16 0"/>
+      <circle cx="12" cy="7" r="4"/>
+    </symbol>
+
+    <symbol id="i-clipboard" viewBox="0 0 24 24">
+      <path d="M9 4h6a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1V6a2 2 0 0 1 2-2Z"/>
+      <path d="M9 4h6v4H9Z"/>
+      <path d="M8 13h8M8 17h5"/>
+    </symbol>
+
+    <symbol id="i-store" viewBox="0 0 24 24">
+      <path d="M4 10h16"/>
+      <path d="M5 10l1-6h12l1 6"/>
+      <path d="M6 10v10h12V10"/>
+      <path d="M9 20v-6h6v6"/>
+    </symbol>
+
+    <symbol id="i-dashboard" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="8" height="8" rx="2"/>
+      <rect x="13" y="3" width="8" height="5" rx="2"/>
+      <rect x="13" y="10" width="8" height="11" rx="2"/>
+      <rect x="3" y="13" width="8" height="8" rx="2"/>
+    </symbol>
+
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14"/>
+    </symbol>
+
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+      <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5Z"/>
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="m20 6-11 11-5-5"/>
+    </symbol>
+
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/>
+      <path d="m21 21-4.3-4.3"/>
+    </symbol>
+
+    <symbol id="i-qr" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="7" height="7" rx="1"/>
+      <rect x="14" y="3" width="7" height="7" rx="1"/>
+      <rect x="3" y="14" width="7" height="7" rx="1"/>
+      <path d="M14 14h2v2h-2ZM18 14h3v3M14 18h3v3M20 20h1v1"/>
+    </symbol>
+
+    <symbol id="i-map" viewBox="0 0 24 24">
+      <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1 1 18 0Z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </symbol>
+
+    <symbol id="i-edit" viewBox="0 0 24 24">
+      <path d="M12 20h9"/>
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+    </symbol>
+
+    <symbol id="i-image" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2"/>
+      <circle cx="8" cy="10" r="2"/>
+      <path d="m21 16-5-5L5 19"/>
+    </symbol>
+
+    <symbol id="i-arrow-left" viewBox="0 0 24 24">
+      <path d="m12 19-7-7 7-7"/>
+      <path d="M19 12H5"/>
+    </symbol>
+
+    <symbol id="i-upload" viewBox="0 0 24 24">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <path d="m17 8-5-5-5 5"/>
+      <path d="M12 3v12"/>
+    </symbol>
+
+    <symbol id="i-save" viewBox="0 0 24 24">
+      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/>
+      <path d="M17 21v-8H7v8"/>
+      <path d="M7 3v5h8"/>
+    </symbol>
+
+    <symbol id="i-logout" viewBox="0 0 24 24">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+      <path d="m16 17 5-5-5-5"/>
+      <path d="M21 12H9"/>
+    </symbol>
+  </svg>
+
+  <!-- LOGIN -->
+  <section id="loginView" class="screen login-view active">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="brand-mark">
+          <svg><use href="#i-leaf"></use></svg>
+        </div>
+
+        <span class="eyebrow">Faculdade Santa Casa + Mercado Sonda</span>
+        <h1>NutriSanta</h1>
+        <p>
+          Plataforma para cadastro, revisão, rastreabilidade e consulta nutricional de alimentos e receitas.
+        </p>
+      </div>
+
+      <form id="loginForm" class="login-form" novalidate>
+        <span class="section-label">Selecione seu perfil</span>
+
+        <div class="login-roles">
+          <button type="button" class="role-card selected" data-login-role="student">
+            <span class="role-icon">
+              <svg><use href="#i-user"></use></svg>
+            </span>
+            <strong>Aluno</strong>
+            <small>Cadastra produtos e receitas básicas.</small>
+          </button>
+
+          <button type="button" class="role-card" data-login-role="teacher">
+            <span class="role-icon">
+              <svg><use href="#i-clipboard"></use></svg>
+            </span>
+            <strong>Professor</strong>
+            <small>Revisa textos, receitas e dados nutricionais.</small>
+          </button>
+
+          <button type="button" class="role-card" data-login-role="sonda">
+            <span class="role-icon">
+              <svg><use href="#i-store"></use></svg>
+            </span>
+            <strong>Responsável Sonda</strong>
+            <small>Complementa rastreabilidade e dados de mercado.</small>
+          </button>
+        </div>
+
+        <div class="login-fields">
+          <label class="field">
+            <span>E-mail institucional</span>
+            <input type="email" value="demo@nutrisanta.com" />
+          </label>
+
+          <label class="field">
+            <span>Senha</span>
+            <input type="password" value="demo1234" />
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">
+          Entrar na plataforma
+        </button>
+
+        <button type="button" id="openClientFromLogin" class="btn btn-ghost btn-full">
+          <svg><use href="#i-qr"></use></svg>
+          Abrir visão QR demonstrativa
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- APP PRINCIPAL -->
+  <section id="appView" class="screen app-view">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-mark">
+          <svg><use href="#i-leaf"></use></svg>
+        </div>
+
+        <div>
+          <strong>NutriSanta</strong>
+          <small>Plataforma nutricional</small>
+        </div>
+      </div>
+
+      <div class="sidebar-user">
+        <div id="sidebarAvatar" class="sidebar-avatar">A</div>
+
+        <div>
+          <strong id="sidebarUserName">Aluno Demo</strong>
+          <small id="sidebarUserRole">Aluno</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section">Geral</span>
+
+        <button type="button" class="nav-item active" data-route="dashboardView">
+          <svg><use href="#i-dashboard"></use></svg>
+          <span>Dashboard</span>
+        </button>
+
+        <button type="button" class="nav-item" data-route="recipeCatalogView">
+          <svg><use href="#i-book"></use></svg>
+          <span>Catálogo de Receitas</span>
+        </button>
+
+        <span class="nav-section" data-only="student">Cadastro do aluno</span>
+
+        <button type="button" class="nav-item" data-route="productFormView" data-only="student">
+          <svg><use href="#i-plus"></use></svg>
+          <span>Novo Produto</span>
+        </button>
+
+        <button type="button" class="nav-item" data-route="recipeFormView" data-only="student">
+          <svg><use href="#i-plus"></use></svg>
+          <span>Nova Receita</span>
+        </button>
+
+        <span class="nav-section" data-only="admin">Revisão</span>
+
+        <button type="button" class="nav-item" data-route="reviewView" data-only="admin">
+          <svg><use href="#i-check"></use></svg>
+          <span>Revisão</span>
+          <span id="pendingNavBadge" class="nav-badge">0</span>
+        </button>
+
+        <span class="nav-section" data-only="sonda">Operação Sonda</span>
+
+        <button type="button" class="nav-item" data-route="traceabilityView" data-only="sonda">
+          <svg><use href="#i-map"></use></svg>
+          <span>Rastreabilidade</span>
+        </button>
+
+        <span class="nav-section">Consulta externa</span>
+
+        <button type="button" id="openQrDemo" class="nav-item">
+          <svg><use href="#i-qr"></use></svg>
+          <span>Visão Cliente</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button type="button" id="logoutButton" class="nav-item danger">
+          <svg><use href="#i-logout"></use></svg>
+          <span>Sair</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Painel NutriSanta</span>
+          <h2 id="topbarTitle">Dashboard</h2>
+        </div>
+
+        <label class="topbar-search">
+          <svg><use href="#i-search"></use></svg>
+          <input id="globalSearch" type="search" placeholder="Buscar alimento ou receita" />
+        </label>
+      </header>
+
+      <div class="page">
+        <!-- DASHBOARD -->
+        <section id="dashboardView" class="view active">
+          <div class="page-heading">
+            <span class="eyebrow">Banco nutricional</span>
+            <h1>Dashboard principal</h1>
+            <p>
+              Consulte alimentos aprovados, acompanhe pendências e abra a visão do cliente por QR Code.
+            </p>
+          </div>
+
+          <section class="metrics-grid">
+            <article class="metric-card">
+              <strong id="approvedCount">0</strong>
+              <span>Itens aprovados</span>
+            </article>
+
+            <article class="metric-card">
+              <strong id="pendingCount">0</strong>
+              <span>Pendentes</span>
+            </article>
+
+            <article class="metric-card">
+              <strong id="recipeCount">0</strong>
+              <span>Receitas aprovadas</span>
+            </article>
+
+            <article class="metric-card">
+              <strong id="traceabilityCount">0</strong>
+              <span>Rastreabilidade completa</span>
+            </article>
+          </section>
+
+          <section class="toolbar">
+            <label class="search-input">
+              <svg><use href="#i-search"></use></svg>
+              <input id="searchInput" type="search" placeholder="Buscar por banana, batata-doce, brócolis..." />
+            </label>
+
+            <select id="categoryFilter" class="form-select">
+              <option value="all">Todas as categorias</option>
+              <option value="Frutas">Frutas</option>
+              <option value="Raízes">Raízes</option>
+              <option value="Hortaliças">Hortaliças</option>
+            </select>
+          </section>
+
+          <section id="itemsGrid" class="items-grid"></section>
+        </section>
+
+        <!-- CADASTRO DE PRODUTO -->
+        <section id="productFormView" class="view">
+          <div class="page-actions">
+            <button type="button" class="btn btn-ghost" data-back-dashboard>
+              <svg><use href="#i-arrow-left"></use></svg>
+              Voltar ao Dashboard
+            </button>
+          </div>
+
+          <div class="page-heading">
+            <span class="eyebrow">Cadastro do aluno</span>
+            <h1>Novo produto</h1>
+            <p>
+              O aluno informa apenas dados básicos, nutricionais e foto.
+              Lote, validade, fornecedor e localização ficam exclusivamente para o responsável Sonda.
+            </p>
+          </div>
+
+          <form id="productForm" class="panel-form" novalidate>
+            <div class="form-section">
+              <span>01</span>
+              <h3>Informações gerais</h3>
+            </div>
+
+            <div class="form-grid two">
+              <label class="field">
+                <span>Nome do alimento</span>
+                <input name="name" type="text" placeholder="Ex: Batata-doce roxa" />
+              </label>
+
+              <label class="field">
+                <span>Categoria</span>
+                <select name="category">
+                  <option value="">Selecione</option>
+                  <option>Frutas</option>
+                  <option>Raízes</option>
+                  <option>Hortaliças</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Origem visual</span>
+                <select name="origin">
+                  <option value="">Selecione</option>
+                  <option value="tree">Árvore</option>
+                  <option value="earth">Terra / raiz</option>
+                  <option value="leaf">Folhagem</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Peso médio</span>
+                <input name="weight" type="text" placeholder="Ex: 100g ou unidade média" />
+              </label>
+
+              <div class="field span-2 file-field">
+                <span>Foto do alimento</span>
+
+                <label class="file-upload">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    data-image-input
+                    data-target="productPhotoData"
+                    data-preview="productPhotoPreview"
+                  />
+
+                  <span class="file-upload-icon">
+                    <svg><use href="#i-upload"></use></svg>
+                  </span>
+
+                  <strong>Selecionar imagem do dispositivo</strong>
+                  <small>Abre a galeria/arquivos do computador ou celular.</small>
+                </label>
+
+                <input id="productPhotoData" name="photo" type="hidden" />
+                <div id="productPhotoPreview" class="image-preview hidden"></div>
+              </div>
+
+              <label class="field span-2">
+                <span>Descrição</span>
+                <textarea name="description" placeholder="Descreva características, uso alimentar e observações relevantes."></textarea>
+              </label>
+            </div>
+
+            <div class="form-section">
+              <span>02</span>
+              <h3>Tabela nutricional básica</h3>
+            </div>
+
+            <div class="form-grid three">
+              <label class="field">
+                <span>Valor energético</span>
+                <input name="calories" type="text" placeholder="Ex: 86 kcal" />
+              </label>
+
+              <label class="field">
+                <span>Carboidratos</span>
+                <input name="carbs" type="text" placeholder="Ex: 20,1g" />
+              </label>
+
+              <label class="field">
+                <span>Proteínas</span>
+                <input name="protein" type="text" placeholder="Ex: 1,6g" />
+              </label>
+
+              <label class="field">
+                <span>Gorduras</span>
+                <input name="fat" type="text" placeholder="Ex: 0,1g" />
+              </label>
+
+              <label class="field">
+                <span>Fibras</span>
+                <input name="fiber" type="text" placeholder="Ex: 3,0g" />
+              </label>
+
+              <label class="field">
+                <span>Potássio</span>
+                <input name="potassium" type="text" placeholder="Ex: 337mg" />
+              </label>
+
+              <label class="field">
+                <span>Ferro</span>
+                <input name="iron" type="text" placeholder="Ex: 0,6mg" />
+              </label>
+
+              <label class="field">
+                <span>Água</span>
+                <input name="water" type="text" placeholder="Ex: 77%" />
+              </label>
+
+              <label class="field">
+                <span>Sódio</span>
+                <input name="sodium" type="text" placeholder="Ex: 55mg" />
+              </label>
+
+              <label class="field">
+                <span>Vitamina A</span>
+                <input name="vitaminA" type="text" placeholder="Ex: 709mcg" />
+              </label>
+
+              <label class="field">
+                <span>Vitamina C</span>
+                <input name="vitaminC" type="text" placeholder="Ex: 2,4mg" />
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" data-back-dashboard>
+                Cancelar
+              </button>
+
+              <button type="reset" class="btn btn-secondary">
+                Limpar
+              </button>
+
+              <button type="submit" class="btn btn-primary">
+                Enviar para revisão
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- CADASTRO DE RECEITA -->
+        <section id="recipeFormView" class="view">
+          <div class="page-actions">
+            <button type="button" class="btn btn-ghost" data-back-dashboard>
+              <svg><use href="#i-arrow-left"></use></svg>
+              Voltar ao Dashboard
+            </button>
+          </div>
+
+          <div class="page-heading">
+            <span class="eyebrow">Cadastro do aluno</span>
+            <h1>Nova receita</h1>
+            <p>
+              Cadastre uma receita vinculada a um alimento.
+              A foto deve ser enviada pelo dispositivo, sem campo de URL.
+            </p>
+          </div>
+
+          <form id="recipeForm" class="panel-form" novalidate>
+            <div class="form-section">
+              <span>01</span>
+              <h3>Dados da receita</h3>
+            </div>
+
+            <div class="form-grid two">
+              <label class="field">
+                <span>Título</span>
+                <input name="title" type="text" placeholder="Ex: Purê assado de batata-doce" />
+              </label>
+
+              <label class="field">
+                <span>Ingrediente principal</span>
+                <select id="recipeFoodSelect" name="foodId">
+                  <option value="">Selecione um alimento aprovado</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Dificuldade</span>
+                <select name="difficulty">
+                  <option value="">Selecione</option>
+                  <option>Fácil</option>
+                  <option>Médio</option>
+                  <option>Difícil</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Tempo</span>
+                <select name="prepTime">
+                  <option value="">Selecione</option>
+                  <option>10 min</option>
+                  <option>20 min</option>
+                  <option>30 min</option>
+                  <option>1 hora ou mais</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Porções</span>
+                <select name="portions">
+                  <option value="">Selecione</option>
+                  <option>10</option>
+                  <option>15</option>
+                  <option>20 ou mais</option>
+                </select>
+              </label>
+
+              <div class="field file-field">
+                <span>Foto da receita</span>
+
+                <label class="file-upload compact-upload">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    data-image-input
+                    data-target="recipePhotoData"
+                    data-preview="recipePhotoPreview"
+                  />
+
+                  <span class="file-upload-icon">
+                    <svg><use href="#i-upload"></use></svg>
+                  </span>
+
+                  <strong>Selecionar foto</strong>
+                  <small>Buscar no computador ou celular.</small>
+                </label>
+
+                <input id="recipePhotoData" name="photo" type="hidden" />
+                <div id="recipePhotoPreview" class="image-preview hidden"></div>
+              </div>
+
+              <label class="field span-2">
+                <span>Ingredientes</span>
+                <textarea name="ingredients" placeholder="Liste ingredientes com quantidades aproximadas."></textarea>
+              </label>
+
+              <label class="field span-2">
+                <span>Modo de preparo</span>
+                <textarea name="preparation" placeholder="Descreva o passo a passo com linguagem clara."></textarea>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" data-back-dashboard>
+                Cancelar
+              </button>
+
+              <button type="reset" class="btn btn-secondary">
+                Limpar
+              </button>
+
+              <button type="submit" class="btn btn-primary">
+                Enviar para revisão
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- REVISÃO -->
+        <section id="reviewView" class="view">
+          <div class="page-actions">
+            <button type="button" class="btn btn-ghost" data-back-dashboard>
+              <svg><use href="#i-arrow-left"></use></svg>
+              Voltar ao Dashboard
+            </button>
+          </div>
+
+          <div class="page-heading">
+            <span class="eyebrow">Professor / Sonda</span>
+            <h1>Revisão de conteúdos</h1>
+            <p>
+              Professor e Sonda podem corrigir dados acadêmicos antes de aprovar.
+              Dados de mercado ficam separados na aba Rastreabilidade.
+            </p>
+          </div>
+
+          <div id="reviewList" class="review-list"></div>
+        </section>
+
+        <!-- CATÁLOGO DE RECEITAS -->
+        <section id="recipeCatalogView" class="view">
+          <div class="page-actions">
+            <button type="button" class="btn btn-ghost" data-back-dashboard>
+              <svg><use href="#i-arrow-left"></use></svg>
+              Voltar ao Dashboard
+            </button>
+          </div>
+
+          <div class="page-heading">
+            <span class="eyebrow">Receitas aprovadas</span>
+            <h1>Catálogo de Receitas</h1>
+            <p>
+              As fotos ficam separadas do texto para evitar sobreposição e melhorar a leitura.
+            </p>
+          </div>
+
+          <section class="toolbar">
+            <label class="filter-label">
+              <span>Ingrediente</span>
+              <select id="recipeCatalogFilter" class="form-select">
+                <option value="all">Todos os ingredientes</option>
+              </select>
+            </label>
+          </section>
+
+          <div id="recipeCatalogGrid" class="recipe-grid"></div>
+        </section>
+
+        <!-- RASTREABILIDADE SONDA -->
+        <section id="traceabilityView" class="view" data-only="sonda">
+          <div class="page-actions">
+            <button type="button" class="btn btn-ghost" data-back-dashboard>
+              <svg><use href="#i-arrow-left"></use></svg>
+              Voltar ao Dashboard
+            </button>
+          </div>
+
+          <div class="page-heading">
+            <span class="eyebrow">Operação Sonda</span>
+            <h1 id="traceabilityTitle">Rastreabilidade</h1>
+            <p id="traceabilityDescription">
+              Escolha se deseja adicionar rastreabilidade em um produto pendente ou editar dados já cadastrados.
+              O cliente vê somente os dados públicos ao abrir o QR Code.
+            </p>
+          </div>
+
+          <section class="traceability-mode-grid" aria-label="Modos de rastreabilidade">
+            <button type="button" class="traceability-mode-card active" data-traceability-mode="add">
+              <span>01</span>
+              <strong>Adicionar rastreabilidade</strong>
+              <small>Para produtos aprovados que ainda estão sem lote, validade, fornecedor ou origem.</small>
+            </button>
+
+            <button type="button" class="traceability-mode-card" data-traceability-mode="edit">
+              <span>02</span>
+              <strong>Editar rastreabilidade</strong>
+              <small>Para corrigir ou atualizar os dados de produtos que já possuem rastreabilidade.</small>
+            </button>
+          </section>
+
+          <form id="traceabilityForm" class="panel-form" novalidate>
+            <div class="form-section">
+              <span>01</span>
+              <h3 id="traceabilityProductSectionTitle">Produto sem rastreabilidade</h3>
+            </div>
+
+            <div class="form-grid two">
+              <label class="field span-2">
+                <span id="traceabilityProductLabel">Produto pendente</span>
+                <select id="traceabilityProductSelect" name="productId">
+                  <option value="">Selecione um produto aprovado</option>
+                </select>
+              </label>
+            </div>
+
+            <div id="traceabilityProductSummary" class="traceability-summary"></div>
+
+            <div class="form-section">
+              <span>02</span>
+              <h3>Dados de mercado</h3>
+            </div>
+
+            <div class="form-grid two">
+              <label class="field">
+                <span>Lote</span>
+                <input name="batch" type="text" placeholder="Ex: LT-2026-041" />
+              </label>
+
+              <label class="field">
+                <span>Fornecedor / Fazenda</span>
+                <input name="supplier" type="text" placeholder="Ex: Fazenda Santa Clara" />
+              </label>
+
+              <label class="field">
+                <span>Validade</span>
+                <input name="validity" type="date" />
+              </label>
+
+              <label class="field">
+                <span>Origem / Cidade</span>
+                <input name="marketOrigin" type="text" placeholder="Ex: Piedade - SP" />
+              </label>
+
+              <label class="field">
+                <span>Código interno / ID</span>
+                <input name="traceCode" type="text" placeholder="Ex: NS-BAT-042" />
+              </label>
+
+              <label class="field">
+                <span>Data de recebimento</span>
+                <input name="receivedAt" type="date" />
+              </label>
+            </div>
+
+            <div class="map-workspace">
+              <div class="map-workspace-header">
+                <div>
+                  <span class="eyebrow">Google Maps</span>
+                  <h3>Pré-visualização da fazenda/local</h3>
+                  <p>
+                    O mapa é gerado pela combinação de “Fornecedor/Fazenda” + “Origem/Cidade”.
+                  </p>
+                </div>
+
+                <button type="button" id="previewMapButton" class="btn btn-secondary">
+                  <svg><use href="#i-map"></use></svg>
+                  Pré-visualizar mapa
+                </button>
+              </div>
+
+              <input id="traceabilityMapsUrl" name="mapsUrl" type="hidden" />
+              <input id="traceabilityMapsQuery" name="mapsQuery" type="hidden" />
+
+              <div id="mapPreview" class="map-preview empty">
+                <span>Digite o local ou fazenda e clique em “Pré-visualizar mapa”.</span>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" data-back-dashboard>
+                Cancelar
+              </button>
+
+              <button id="traceabilitySubmitButton" type="submit" class="btn btn-primary">
+                <svg><use href="#i-save"></use></svg>
+                Adicionar rastreabilidade
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+  </section>
+
+  <!-- VISÃO CLIENTE / QR CODE -->
+  <section id="clientView" class="screen client-view origin-tree">
+    <div class="client-top-actions">
+      <button type="button" id="backToAppFromClient" class="client-back-button">
+        <svg><use href="#i-arrow-left"></use></svg>
+        Voltar ao painel
+      </button>
+
+      <button type="button" id="backToClientList" class="client-back-button secondary hidden">
+        Voltar à lista
+      </button>
+    </div>
+
+    <main class="client-shell">
+      <section id="clientListPanel" class="client-list-panel">
+        <div class="page-heading compact-heading">
+          <span class="eyebrow">QR Code NutriSanta</span>
+          <h1>QR Codes por categoria</h1>
+          <p>
+            O cliente acessa somente esta área externa. No GitHub Pages, o QR Code deve apontar para cliente.html?produto=ID, sem abrir login, dashboard ou abas internas.
+          </p>
+        </div>
+
+        <nav class="client-category-tabs" aria-label="Categorias de alimentos no mercado">
+          <button type="button" class="client-category-tab active" data-client-category="Frutas">
+            <strong>Frutas</strong>
+            <span data-client-category-count>0 itens</span>
+          </button>
+
+          <button type="button" class="client-category-tab" data-client-category="Raízes">
+            <strong>Raízes</strong>
+            <span data-client-category-count>0 itens</span>
+          </button>
+
+          <button type="button" class="client-category-tab" data-client-category="Hortaliças">
+            <strong>Hortaliças</strong>
+            <span data-client-category-count>0 itens</span>
+          </button>
+        </nav>
+
+        <div id="clientProductList" class="client-product-grid"></div>
+      </section>
+
+      <section id="clientDetailPanel" class="client-detail-panel hidden">
+        <section class="client-hero">
+          <div id="clientPhoto" class="client-photo"></div>
+
+          <div>
+            <span id="clientCategory" class="client-badge">Categoria</span>
+            <h1 id="clientTitle">Alimento</h1>
+            <p id="clientDescription">Descrição do produto selecionado.</p>
+          </div>
+        </section>
+
+        <nav class="client-section-tabs">
+          <button type="button" class="active" data-client-tab="info">
+            Informações
+          </button>
+
+          <button type="button" data-client-tab="recipes">
+            Receitas
+          </button>
+        </nav>
+
+        <section id="clientInfoPanel" class="client-panel active">
+          <div id="clientNutrition" class="nutrition-grid"></div>
+          <div id="clientTraceability" class="trace-card"></div>
+        </section>
+
+        <section id="clientRecipesPanel" class="client-panel">
+          <div id="clientRecipes" class="recipe-grid compact"></div>
+        </section>
+      </section>
+    </main>
+  </section>
+
+  <!-- MODAL DE EDIÇÃO -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-backdrop" data-close-modal></div>
+
+    <section class="modal-card">
+      <header class="modal-header">
+        <div>
+          <span class="eyebrow">Revisão detalhada</span>
+          <h2 id="editModalTitle">Editar envio</h2>
+        </div>
+
+        <button type="button" class="icon-button" data-close-modal>
+          ×
+        </button>
+      </header>
+
+      <form id="editForm" class="modal-body" novalidate></form>
+    </section>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+</body>
+</html>
