@@ -1568,7 +1568,12 @@ function openClientView(productId, returnTarget = "app") {
 
   if ($("#clientListPanel")) $("#clientListPanel").classList.add("hidden");
   if ($("#clientDetailPanel")) $("#clientDetailPanel").classList.remove("hidden");
-  if ($("#backToClientList")) $("#backToClientList").classList.remove("hidden");
+
+  // Na página pública cliente.html, usamos apenas um botão compacto:
+  // "Ver QR Codes". Isso evita dois botões grandes no topo do celular.
+  if ($("#backToClientList")) {
+    $("#backToClientList").classList.toggle("hidden", state.clientReturnTarget === "public");
+  }
 
   updateClientPublicUrl(productId);
   updateClientReturnButton();
@@ -1627,7 +1632,7 @@ function updateClientReturnButton() {
     button.classList.toggle("hidden", Boolean(isListVisible));
     button.innerHTML = `
       <svg><use href="#i-arrow-left"></use></svg>
-      Ver todos os QR Codes
+      QR Codes
     `;
     return;
   }
